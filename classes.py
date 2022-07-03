@@ -1,4 +1,5 @@
 from os import system
+from tkinter import *
 import pymysql.cursors
 from time import sleep
 import matplotlib.pyplot as plt
@@ -507,3 +508,12 @@ def mensagem(msg):
     print(msg)
     sleep(3)
     system("cls")
+
+
+def janela():
+    janela = Tk()
+    janela.title('Sistema de Gerenciamento')
+    janela.geometry('800x300') # largura x altura
+    janela.resizable(False, False)
+    
+    janela.mainloop()

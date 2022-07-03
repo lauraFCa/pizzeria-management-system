@@ -2,6 +2,8 @@ from classes import *
 
 
 if __name__ == "__main__":
+    janela()
+    
     autentico = False
     while not autentico:
         decisao = int(input("Digite 1 para Logar ou 2 para Cadastrar: "))
