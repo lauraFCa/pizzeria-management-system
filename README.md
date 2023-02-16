@@ -1,5 +1,12 @@
-# Gerenciador de Pizzaria
+# Restaurant Manager App
 
-Sistema simples de gerenciamento de uma pizzaria
+Simple application to manage a restaurant  
+System made with Python, TKinter, Matplotlib and PyMysql
 
-Feito com o curso: [Python do básico ao avançado + inteligência artificial](https://www.udemy.com/course/python-do-basico-ao-avancado-inteligencia-artificial/)
+Pre-req:
+- ``pip install PyMySQL``
+- ``pip install matplotlib``
+
+
+
+Course: [Python do básico ao avançado + inteligência artificial](https://www.udemy.com/course/python-do-basico-ao-avancado-inteligencia-artificial/)
