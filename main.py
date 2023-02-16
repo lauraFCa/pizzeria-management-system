@@ -1,45 +1,59 @@
-from classes import *
+from connection import Connection
+from register import Register
+from product import Product
+from order import Order
+from stats import Stats
+from tkinter import *
 
 
 if __name__ == "__main__":
-    janela()
+
+    def window():
+        wind = Tk()
+        wind.title('Management System')
+        wind.geometry('800x300') # width x height
+        wind.resizable(False, False)
+        
+        wind.mainloop()
+
+    window()
     
-    autentico = False
-    while not autentico:
-        decisao = int(input("Digite 1 para Logar ou 2 para Cadastrar: "))
-        query = 'SELECT * FROM cadastros;'
-        resultado = Conexao().selectBD(query, 'Erro ao conectar no banco de dados')
+    auth = False
+    while not auth:
+        decisao = int(input("Type 1 to LogIn or 2 to Register: "))
+        query = 'SELECT * FROM users;'
+        result = Connection.selectBD(Connection, query, 'Error to connect to database')
 
-        autentico, userMaster = Cadastro().logarCadastrar(decisao, resultado)
+        auth, userMaster = Register().loginRegister(decisao, result)
 
-        print('Cadastros:\n', resultado)
-        print('Autenticado: ', autentico,
+        print('Registers:\n', result)
+        print('Authenticated: ', auth,
               '\nStatus usuario master: ', userMaster)
 
-    opcoes = 'Digite: 0 para Sair\n'\
-        '1 para Cadastrar produto\n'\
-        '2 para Listar Produtos cadastrados\n'\
-        '3 para Listar os Pedidos\n'\
-        '4 para Gerar Estatisticas\n'\
-        '5 para Cadastrar novo Pedido (garçom)\n> '
+    options = 'Type: 0 to Leave\n'\
+        '1 to Register a product\n'\
+        '2 to List registered Products\n'\
+        '3 to List Orders\n'\
+        '4 to Create Statistcss\n'\
+        '5 to Register new Order (waiter)\n> '
 
-    if autentico:
-        mensagem("Autenticado!")
+    if auth:
+        Message("Authenticated!")
         if userMaster:
-            decisaoUsuario = 1
-            while decisaoUsuario != 0:
-                decisaoUsuario = int(input(opcoes))
-                if decisaoUsuario == 1:
-                    Produto().cadastrarProduto()
-                elif decisaoUsuario == 2:
-                    Produto().listarProduto()
+            userDecision = 1
+            while userDecision != 0:
+                userDecision = int(input(options))
+                if userDecision == 1:
+                    Product().registerProduct()
+                elif userDecision == 2:
+                    Product().listProduct()
                     delete = int(
-                        input("Digite 1 para excluir um produto\n2 para Sair\n"))
+                        input("Type 1 to delete a product\n2 to Leave\n"))
                     if delete == 1:
-                        Produto().excluirProduto()
-                elif decisaoUsuario == 3:
-                    Pedido().listarPedido()
-                elif decisaoUsuario == 4:
-                    Estatistica().gerarEstatisticas()
-                elif decisaoUsuario == 5:
-                    Pedido().cadastrarPedidos()
+                        Product().deleteProduct()
+                elif userDecision == 3:
+                    Order().listOrders()
+                elif userDecision == 4:
+                    Stats().createStatiscs()
+                elif userDecision == 5:
+                    Order().registerOrders()
